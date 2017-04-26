@@ -1,0 +1,41 @@
+<link rel="stylesheet" href="~/css/products.css" />
+<script src="~/js/products.js" asp-append-version="true"></script>
+@{
+    @using eCommerce.Models 
+}
+@model eCommerce.Models.Product
+<h2> @ViewData["error"] </h2> 
+<div id = "product_container">
+    @Html.Partial("Partials/productform")
+            @{
+                foreach(Product aProduct in ViewBag.listOfProducts)
+                {
+                
+                    <div class = "image">
+                        <h3>@aProduct.ProductName </h3>
+                        <img src = "@aProduct.ImgSrc" alt = "@aProduct.ProductId">
+                        <h4> @aProduct.Quantity left </h4> 
+                    <div class = "form">
+                        <form method = "post" action = "updateproduct">
+                            <input type = "hidden" name = "productid" value = "@aProduct.ProductId"/>
+                            <label for "updatename">Update Name </label> 
+                            <input name = "updatename" type = "text" value = "@aProduct.ProductName" />
+                            <label for "updatequantity">Update Quantity </label> 
+                            <input name = "updatequantity" type = "number" value = "@aProduct.Quantity" />
+                            <label for "updateprice">Update Price </label> 
+                            <input name = "updateprice" type = "number" value = "@aProduct.Price"/>
+                            <label for "updateimgsrc">Update Image Source </label> 
+                            <input name = "updateimgsrc" type = "text" value = "@aProduct.ImgSrc"/>
+                            <label for "updatedescription" type = "text">Update Description </label>
+                            <input name = "updatedescription" type = "text" value = "@aProduct.Description">
+                            <input type = "submit" value = "Update Info">
+                        </form>
+                    </div>
+                    </div> 
+                    
+                }
+            }
+        </div> 
+    </div> 
+</div> 
+ 

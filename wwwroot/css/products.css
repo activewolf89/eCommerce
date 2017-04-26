@@ -1,0 +1,39 @@
+
+    img{
+        width:100px;
+        height:100px;
+        display: inline-block;
+        vertical-align: top;
+     
+        
+    }
+    #LeftProduct{
+        vertical-align: top;
+        width:200px;
+        display:inline-block;
+        height:900px;
+    }
+    #RightProduct{
+        
+        width: 800px;
+        display:inline-block;
+        height: 900px;
+    }
+    #RightProductPictures{
+        display:inline-block;
+    
+        width:800px;
+        height:400px;
+ 
+    }
+    .image{
+        display:inline-block;
+        background-color:white;
+        border: 2px solid black;
+        width:200px;
+        height:200px;
+    }
+.form{
+    
+    display:none;
+}

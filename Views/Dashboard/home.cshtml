@@ -1,0 +1,67 @@
+<link rel="stylesheet" href="~/css/dashboard.css" />
+<script src="~/js/dashboard.js" asp-append-version="true"></script>
+
+<div id = "DashBoardContainer">
+    <div id = "LeftDashBoard">
+        <form method = "post" action = "searchproduct">
+            <input type = "text" placeholder = "search" name = "searchstring">
+            <input type = "submit" value = "filter">
+        </form>  
+    </div> 
+    <div id = "RightDashBoard">
+        <div id = "RightDashBoardPictures">
+            @{
+                @using eCommerce.Models;
+                <div id = "forloop">
+                @foreach(Product aProduct in @ViewBag.myProductList)
+                {
+                    <div class = "image">
+                        <img src = "@aProduct.ImgSrc">
+                        <h4> @aProduct.ProductName </h4> 
+                        <h4> (@aProduct.Quantity) left </h4>
+                    </div>  
+                }
+  
+                
+                <a id = "showmoreproduct" href = "/showmoreproduct">Show More... </a> 
+                </div> 
+                  <div id = "productallloop">
+                </div> 
+            }
+
+        </div>
+        <div id = "RightDashBoardRecentOrders">
+            <h2> Recent Orders </h3> 
+            
+                @{
+
+                foreach(Order aOrder in @ViewBag.myRecentOrders)
+                    {
+                        
+                        DateTime atNow= DateTime.Now;
+                        var Span = atNow - @aOrder.Product.Created_At;      
+
+                    <h5> @aOrder.Customer.CustomerName purchased @aOrder.Quantity @aOrder.Product.ProductName... ( @Span.Hours hr and @Span.Minutes minuges ago)</h5> 
+                        
+                    }
+                }
+        </div>
+        <div id = "RightDashBoardNewCustomers">
+            <h3> Recent Customer </h3> 
+            @{
+                foreach(var boxedData in @ViewBag.Recents)
+                {
+                    if(boxedData is Customer)
+                    {
+<h4> @boxedData.CustomerName joined the store @boxedData.Created_At </h4> 
+                    }
+                    if(boxedData is Order)
+                    {
+<h4> @boxedData.Customer.CustomerName purchased @boxedData.Quantity @boxedData.Product.ProductName @boxedData.Created_At </h4>
+                    }
+                }
+            }
+        </div> 
+        
+    </div>
+</div>

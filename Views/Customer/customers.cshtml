@@ -1,0 +1,37 @@
+<link rel="stylesheet" href="~/css/customer.css" />
+<script src="~/js/customer.js" asp-append-version="true"></script>
+<h2> Add a new customer </h2> 
+<form method = "post" action = "/addcustomer">
+    <label for ="customer_name">Customer Name: </label> 
+    <input type = "text" name = "customer_name">
+    <input type = "submit" value = "Add">
+</form> 
+<input type = "text" placeholder = "search" id = "searchtext">
+
+<table> 
+    <tr> 
+        <th> Customer Name </th>
+        <th> Created Date </th> 
+        <th> Actions </th>  
+    </tr> 
+    <h2> @ViewBag.status </h2> 
+    @{
+        @using eCommerce.Models;
+    }
+        
+            @{
+            var count = 0;
+        foreach(Customer aCustomer in @ViewBag.Customer)
+        {
+            <tr id = @aCustomer.CustomerId>
+                <input type = "hidden" id = "customer_@count" value = @aCustomer.CustomerId />
+                <td> @aCustomer.CustomerName </td> 
+                <td> @aCustomer.Created_At.ToString("MMM/dd/yyyy") </td> 
+                <td> <button style = "color:red" id =@count  name = "removebutton">Remove </button> </td> 
+            </tr> 
+            count ++;
+
+        }
+            }
+    
+</table> 

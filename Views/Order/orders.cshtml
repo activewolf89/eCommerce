@@ -1,0 +1,45 @@
+@{
+    @using eCommerce.Models;
+}
+<link rel="stylesheet" href="~/css/customer.css" />
+<script src="~/js/orders.js" asp-append-version="true"></script>
+<u> Add a new order </u> 
+<form method = "post" action = "/orderup">
+    <label for ="customer">Customer </label>
+    <select name = "customer" id = "customer"> 
+    </select>
+<div id = "orderproduct">
+
+    <label for ="order">Order </label>
+    <select name = "order" id = "order"> 
+    </select> 
+
+
+    <select id = "product"name = "product" id = "product"> 
+    </select> 
+
+    <input type = "submit" value = "Order">
+</div> 
+</form> 
+
+<input type = "text" name = "order_filter" placeholder = "filter..." id = "order_filter">
+<table> 
+    <tr> 
+        <td>Customer Name</td> 
+        <td>Product </td> 
+        <td>Quantity </td> 
+        <td>Date </td> 
+    </tr> 
+    @{
+        foreach(Order anOrder in @ViewBag.myOrderedList)
+        {
+            <tr>
+                <td>@anOrder.Customer.CustomerName</td>
+                <td>@anOrder.Product.ProductName</td>
+                <td>@anOrder.Quantity</td>
+                <td>@anOrder.Created_At.ToString("MMM dd yyyy")</td>
+            </tr> 
+        }
+    }
+
+</table>
